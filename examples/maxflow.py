@@ -1,8 +1,16 @@
+"""Maximum Netwrok flow
+
+This script uses pyomo package to model a simple maximum network flow problem.
+fill the GLPK_EXE_PATH based on your local GLPK solver path.
+dual values and reduced costs are extracted from solver.
+"""
+GLPK_EXE_PATH = "<glpk-path>"
+
 import pyomo.environ as pyo
 
 ## fix it according to your GLKP solver local path
 solvername = 'glpk'
-solverpath_exe = 'D:\\Solver\\winglpk-4.65\\glpk-4.65\\w64\\glpsol'
+solverpath_exe = GLPK_EXE_PATH
 
 ## Connecting to Solver and solving the instance
 solver= pyo.SolverFactory(solvername, executable=solverpath_exe)
@@ -48,7 +56,7 @@ model.obj = pyo.Objective(expr=model.x[6,1], sense=pyo.maximize)
 
 ## Dual values
 ## dual values are not captured by default, it should be signaled before optimization
-## this vaiables should be named exactly "dual" and "rc" 
+## this variables should be named exactly "dual" and "rc" 
 model.dual = pyo.Suffix(direction=pyo.Suffix.IMPORT)
 model.rc = pyo.Suffix(direction=pyo.Suffix.IMPORT)
 

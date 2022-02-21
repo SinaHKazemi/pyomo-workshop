@@ -1,9 +1,16 @@
+"""Simple LP model
+This script uses pyomo package to model a simple optimization problem.
+fill the GLPK_EXE_PATH based on your local GLPK solver path.
+you can print the results by uncommenting the print lines.
+"""
+GLPK_EXE_PATH = "<glpk-path>"
+
 # from pyomo.env import * (don't import like this, you may see this method of import in forums)
 import pyomo.environ as pyo
 
 ## fix it according to your GLKP solver local path
 solvername = 'glpk'
-solverpath_exe = 'D:\\Solver\\winglpk-4.65\\glpk-4.65\\w64\\glpsol'
+solverpath_exe = GLPK_EXE_PATH
 
 ## Connecting to Solver and solving the instance
 solver= pyo.SolverFactory(solvername, executable=solverpath_exe)

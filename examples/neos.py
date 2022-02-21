@@ -1,8 +1,15 @@
+"""NEOS Server through pyomo
+
+This script uses pyomo package to send an optimization problem to NEOS server and show the results.
+please register in NEOS server and fill your email address in the first line of the script.
+"""
+YOUR_EMAIL_AT_NEOS = "your.email@domain.com"
+
 import pyomo.environ as pyo
 import os
 
 # provide an email address
-os.environ['NEOS_EMAIL'] = 'sina.hkazemi@gmail.com'
+os.environ['NEOS_EMAIL'] = YOUR_EMAIL_AT_NEOS
 
 # formulate optimization model
 model = pyo.ConcreteModel()
@@ -20,4 +27,4 @@ model.obj = pyo.Objective(expr=model.x + model.y, sense=pyo.maximize)
 
 solver_manager = pyo.SolverManagerFactory('neos')
 results = solver_manager.solve(model, opt='cplex')
-model.pprint()
+print(results)

@@ -1,8 +1,15 @@
+"""Warehouse location problem
+
+This script uses pyomo package to model a warehouse location problem.
+fill the GLPK_EXE_PATH based on your local GLPK solver path.
+"""
+GLPK_EXE_PATH = "<glpk-path>"
+
 import pyomo.environ as pyo
 
 ## fix it according to your GLKP solver local path
 solvername = 'glpk'
-solverpath_exe = 'D:\\Solver\\winglpk-4.65\\glpk-4.65\\w64\\glpsol'
+solverpath_exe = GLPK_EXE_PATH
 
 ## Connecting to Solver and solving the instance
 solver= pyo.SolverFactory(solvername, executable=solverpath_exe)
